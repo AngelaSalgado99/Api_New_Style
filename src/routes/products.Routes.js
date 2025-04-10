@@ -7,11 +7,11 @@ const apiName ='/products';
 
 router.route(apiName)
     .get(verifyToken,showProducts)
-    .post(addProducts);
+    .post(verifyToken,addProducts);
 
 router.route(`${apiName}/:id`)
-    .get(showProductsId)
-    .put(updateProducts)
-    .delete(deleteProducts);
+    .get(verifyToken,showProductsId)
+    .put(verifyToken,updateProducts)
+    .delete(verifyToken,deleteProducts);
  
 export default router;
