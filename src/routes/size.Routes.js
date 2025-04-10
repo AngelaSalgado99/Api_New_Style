@@ -1,17 +1,18 @@
 
 import {Router} from 'express';
 import {showSize, showSizeId, addSize, updateSize, deleteSize} from '../controllers/size.Controller.js';
+import { verifyToken } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 const apiName ='/Size';
 
 router.route(apiName)
-    .get(showSize)
-    .post(addSize);
+    .get(verifyToken,showSize)
+    .post(verifyToken,addSize);
 
 router.route(`${apiName}/:id`)
-    .get(showSizeId)
-    .put(updateSize)
-    .delete(deleteSize);
+    .get(verifyToken,showSizeId)
+    .put(verifyToken,updateSize)
+    .delete(verifyToken,deleteSize);
  
 export default router;
